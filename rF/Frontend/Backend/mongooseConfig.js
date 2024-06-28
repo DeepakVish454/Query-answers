@@ -1,33 +1,37 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 mongoose
-  .connect('mongodb://localhost:27017',)
+  .connect('mongodb://localhost:27017')
   .then(() => {
-    console.log('Connected to MongoDB')
+    console.log('Connected to MongoDB');
   })
   .catch(() => {
-    console.log('Error connecting to MongoDB')
-  })
+    console.log('Error connecting to MongoDB');
+  });
 
-  const schema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: false
-    },
-    reply: {
-        type: Array,
-        required: false
-    },
-})
+const replySchema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true,
+  },
+});
 
-const collection = new mongoose.model('users', schema);
+const postSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  replies: [replySchema],
+});
 
-export default collection;
+const Post = mongoose.model('Post', postSchema);
+
+export default Post;
