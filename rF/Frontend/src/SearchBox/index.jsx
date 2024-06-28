@@ -27,7 +27,7 @@ function Index() {
               width: "250px",
               fontSize: "13px",
               fontWeight: "bold",
-              color: "white",
+              color: "#fff",
               backgroundColor: "blue",
               "&:hover": {
                 backgroundColor: "lightblue",
